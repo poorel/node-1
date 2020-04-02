@@ -1,0 +1,107 @@
+var fs = require("fs");
+var data = '';
+let obj = {
+  'lang.wms.fed.printSettings' : '待替换1',
+  'lang.wms.fed.first' : '待替换2'
+};
+
+let str = './';
+
+function test(str) {
+  fs.readdir(str, function (err, files) {
+    if (err) {
+      return console.log('目录不存在')
+    }
+    files.forEach((item) => {
+      if(item.indexOf('.') > -1){
+        let filePath = str + "/" + item;
+        console.log( filePath)
+        // 创建可读流
+        var readerStream = fs.createReadStream(filePath);
+        readerStream.setEncoding('UTF8');
+        readerStream.on('data', function(chunk) {
+          data += chunk;
+        });
+
+        readerStream.on('end',function(){
+          data = data.replace(/\$L\((.+?)\)/g,function (c) {
+            let arr =  c.split("'");
+            for (let i in obj) {
+              if(obj[i] === arr[1]){
+                arr[1] = i;
+                break;
+              }
+            }
+            return arr.join("'");
+          });
+          var writerStream = fs.createWriteStream(filePath);
+          writerStream.write(data,'UTF8');
+          writerStream.end();
+          writerStream.on('finish', function() {
+            console.log("写入完成。");
+          });
+
+        });
+
+        readerStream.on('error', function(err){
+          console.log(err.stack);
+        });
+      }else {
+        let newStr = str + "/" + item;
+        console.log('新路径',newStr);
+        test(newStr)
+      }
+    })
+  });
+}
+test(str)
+xxx999
+89089809808123adhasjdahsjkdjashdjksalcjashcsjahcsjahcsajhdsakjhdasjkldhsadqwduiq
+123adhasjdahsjkdjashdjksalcjashcsjahcsjahcsajhdsakjhdasjkldhsadqwduiq
+123adhasjdahsjkdjashdjksalcjashcsjahcsjahcsajhdsakjhdasjkldhsadqwduiq
+123adhasjdahsjkdjashdjksalcjashcsjahcsjahcsajhdsakjhdasjkldhsadqwduiq
+123adhasjdahsjkdjashdjksalcjashcsjahcsjahcsajhdsakjhdasjkldhsadqwduiq
+123adhasjdahsjkdjashdjksalcjashcsjahcsjahcsajhdsakjhdasjkldhsadqwduiq
+8888var fs = require("fs");
+let components = []
+const files = fs.readdirSync('./test')
+files.forEach(function (item, index) {
+  let stat = fs.lstatSync("./test/" + item)
+  if (stat.isDirectory() === true) {
+    components.push(item)
+  }
+  console.log(item);
+})
+
+//获取所有文件路径
+var fs = require('fs')
+let str = './test';
+
+function test(str) {
+  fs.readdir(str, function (err, files) {
+    if (err) {
+      return console.log('目录不存在')
+    }
+    files.forEach((item) => {
+      if(item.indexOf('.') > -1){
+        console.log( str + "/" + item)
+      }else {
+        let newStr = str + "/" + item;
+        console.log('新路径',newStr);
+        test(newStr)
+      }
+    })
+  });
+}
+test(str)
+
+- var config = require('common/config');
+.content-wrapper
+    section.content-header
+      h1
+        | #{$L('lang.wms.fed.first')}
+      ol.breadcrumb
+        li
+          | #{$L('lang.wms.fed.first')}
+        li
+          | #{$L('lang.wms.fed.basicSetting')}
