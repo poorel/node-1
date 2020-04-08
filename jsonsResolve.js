@@ -23,7 +23,7 @@ function f(item) {
   readerStream.on('end',function(){
     // 将 data 广播出去
     initInt++;
-    EventEmitter.emit('data', data);
+    EventEmitter.emit('data');
   });
 
   readerStream.on('error', function(err){
@@ -35,7 +35,7 @@ arr.forEach((item) => {
 })
 
 // 监听 data
-EventEmitter.on('data', (ext) => {
+EventEmitter.on('data', () => {
   if(initInt === 2){
     let obj = JSON.parse(arr[0].data)
     Object.keys(JSON.parse(arr[1].data)).forEach((key) => {
