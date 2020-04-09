@@ -1,4 +1,7 @@
 var fs = require("fs");
+var path=require('path');
+
+let typeArr = ['.html','.js','.jade'];
 let obj = {
   'lang.wms.fed.printSettings' : '待替换1',
   'lang.wms.fed.first' : '待替换2'
@@ -12,10 +15,15 @@ function test(str) {
       return console.log('目录不存在')
     }
     files.forEach((item) => {
+
       let filePath = str + "/" + item;
       // 判断文件目录是否存在
       if(!fs.statSync(filePath).isDirectory()){
         // 创建可读流
+        if(typeArr.indexOf(path.extname(item)) === -1){
+          console.log('无需改动的类型', path.extname(item));
+          return
+        }
         var data = '';
         var readerStream = fs.createReadStream(filePath);
         readerStream.setEncoding('UTF8');
