@@ -1,0 +1,3 @@
+export const SET_DICT = 'SET_DICT';
+
+export const SET_WAREHOUES_QUERY_ALL = 'SET_WAREHOUES_QUERY_ALL';
