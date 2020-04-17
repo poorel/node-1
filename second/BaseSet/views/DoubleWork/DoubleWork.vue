@@ -1,8 +1,8 @@
 <template>
 <div v-if="isLoaded">
-    <router-view></router-view>
+    <router-view>海贼王，最帅</router-view>海贼王,最帅
 </div>
-
+我是一个句号。
 </template>
 
 <script>

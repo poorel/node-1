@@ -32,8 +32,8 @@ function test(str) {
         });
 
         readerStream.on('end',function(){
-          data = data.replace(/((console\.log\((\'|\"))*\/*\s*((\'|\"))*[\u2E80-\u9FFF]+\s*[\u2E80-\u9FFF]+!*\?*((\'|\"))*)/g,function (c) {
-            console.log(c);
+          data = data.replace(/((console\.log\((\'|\"))*\/*\s*((\'|\"))*[\u2E80-\u9FFF]+(,?|，?)\s*[\u2E80-\u9FFF]+。?!?\?*((\'|\"))*)/g,function (c) {
+            console.log('11',c);
           });
           return;
           data = data.replace(/\$L\((.+?)\)/g,function (c) {

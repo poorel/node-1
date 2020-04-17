@@ -55,7 +55,7 @@ p.then(function (data) {
      });*/
      //截取一个图片后再合并
     // saveimage.blit(img1, 4, 1,1,0,1,1);
-     saveimage.write('image2.jpeg')
+     saveimage.write('image4.jpeg')
   });
 },function (err) {
   console.log(err);

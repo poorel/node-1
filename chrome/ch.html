@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="normal"></div>
+<p id="btn"></p>
+</body>
+</html>
+<script type="text/javascript">
+  let fn = function () {
+    for (i = 0; i < 10; i++) {
+      var childNode = document.createElement('p');
+      childNode.innerHTML = '<span>这里是提示信息〜〜</span>';
+      childNode.setAttribute('class', 'normal');
+      document.getElementsByTagName('body')[0].appendChild(childNode);
+    }
+
+  }
+  var btn = document.getElementById("btn");
+  var test1  =function(){
+    console.log(99)
+    fn()
+  }
+  var test2  =function(){
+    console.log(new Array(10000))
+  }
+  setTimeout(function () {
+    test1();
+    test2();
+  },2000)
+</script>
+<style>
+  .normal{
+    width: 199px;
+    height: 199px;
+    background: #0b2e13;
+  }
+
+</style>
