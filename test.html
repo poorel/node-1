@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+1234
+</body>
+</html>
+<script type="text/javascript">
+  console.log(99999)
+  history.pushState(null, null, document.URL);
+  window.addEventListener('popstate', function () {
+    alert(8888)
+    history.pushState(null, null, document.URL);
+  });
+</script>
